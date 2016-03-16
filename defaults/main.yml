@@ -1,0 +1,8 @@
+---
+collectd_packages: "{{ collectd_packages_default }}"
+collectd_conf_dir: /etc/collectd.d
+collectd_plugins:
+  - name: cpu
+  - name: interface
+  - name: load
+  - name: memory

@@ -1,0 +1,4 @@
+---
+collectd_packages_default:
+  - collectd
+  - collectd-rrdtool

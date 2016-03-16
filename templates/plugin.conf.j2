@@ -1,0 +1,6 @@
+# ansible managed
+LoadPlugin {{ item.name }}
+{% if 'conf' in item %}
+<Plugin {{ item.name }}>
+{{ item.conf }}
+</Plugin>

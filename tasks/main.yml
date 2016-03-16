@@ -1,0 +1,20 @@
+---
+- name: include os-specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- include: setup-redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: configure collectd plugins
+  template: >-
+    src=plugin.conf.j2
+    dest={{ collectd_conf_dir }}/{{ item.name }}.conf
+    owner=root
+    group=root
+    mode=0644
+    backup=yes
+  with_items: collectd_plugins
+  notify: restart collectd
+
+- name: enable and start collectd service
+  service: name=collectd enabled=yes state=started

@@ -1,0 +1,4 @@
+---
+- name: install collectd
+  yum: name={{ item }} state=installed
+  with_items: collectd_packages
