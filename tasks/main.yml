@@ -13,7 +13,7 @@
     group=root
     mode=0644
     backup=yes
-  with_items: collectd_plugins
+  with_items: "{{ collectd_plugins }}"
   notify: restart collectd
 
 - name: enable and start collectd service
