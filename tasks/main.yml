@@ -5,6 +5,23 @@
 - include: setup-redhat.yml
   when: ansible_os_family == "RedHat"
 
+- name: set up collectd.conf
+  template:
+    src: collectd.conf.j2
+    dest: /etc/collectd.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart collectd
+
+- name: ensure configuration directory exists
+  file:
+    path: "{{ collectd_conf_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
 - name: configure collectd plugins
   template: >-
     src=plugin.conf.j2
